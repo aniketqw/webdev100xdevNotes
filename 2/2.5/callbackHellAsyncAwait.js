@@ -5,7 +5,8 @@ function setTimeoutPromisified(duration){
 }
 
 async function solve(){
-    await setTimeoutPromisified(1000);
+    //seem like callback and promise not work?
+    await setTimeoutPromisified(1000);// thread is not waiting here under the hood it is bunch promise
     console.log("hi");
     await setTimeoutPromisified(3000);
     console.log("hello");
@@ -14,3 +15,6 @@ async function solve(){
 }
 
 solve();
+
+//to check we have log outside the function if it is sequential it should wait
+console.log("hi outside");
