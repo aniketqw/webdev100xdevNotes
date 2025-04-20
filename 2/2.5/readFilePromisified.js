@@ -9,7 +9,10 @@ function readFileAsync(file)
         });
     });
 };
+
+// without catch it will log undefined (that mean any console.log will work even if we go error)
 readFileAsync('file.txt').then(function(data)
 {
+    console.log("File has been read");
     console.log(data);
 });
