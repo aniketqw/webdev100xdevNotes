@@ -1,3 +1,4 @@
+// https://projects.100xdevs.com/tracks/promises-async-await/Promises-and-async--await-7
 function setTimeoutPromisified(duration){
     return new Promise(function(resolve){
         setTimeout(resolve,duration);
