@@ -13,14 +13,18 @@
 	  <h4>2. Go out to eat</h4>
 	  <div>
 	    <input type="text"></input>
-	    <button>Add Todo</button>
+	    <button onclick="addToDo()">Add Todo</button>
+        <!-- on click the addToDo function will be called and it will get the value given inside the input -->
 	  </div>
 
 
       <script>
         // console.log(document);
-        const input =document.querySelector('input');
-        console.log(input);//it will find the first input element
+        function addToDo(){
+        const inputElement =document.querySelector('input');
+        const value= inputElement.value;
+        console.log(value);
+        }
       </script>
 
 	</body>
