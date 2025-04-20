@@ -14,7 +14,7 @@ setTimeoutPromisified(1000).then(function(){
     });
 });
 //it again look like a callback hell There are two way to solve it One define function outside and other if we want to keep using anonymouse function see following code
-
+// used Promise chaining to avoid callback hell
 setTimeoutPromisified(1000).then(function(){
     console.log("hi");
     return setTimeoutPromisified(3000)}).then(function(){
@@ -23,4 +23,3 @@ setTimeoutPromisified(1000).then(function(){
             console.log("hi There");
         });
  
-        
