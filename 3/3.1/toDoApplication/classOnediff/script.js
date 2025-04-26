@@ -8,7 +8,7 @@ function addToDo(){
     divel.innerHTML="<div>"+inputF.value+"<button onclick='deleteToDo("+ctr+")'>Delete</button> "+"</div>";
     ctr+=1;
 
-    const parentEl=document.querySelector("body");
+    const parentEl=document.querySelector("#toDoContainer");
     parentEl.appendChild(divel);
 
 }
