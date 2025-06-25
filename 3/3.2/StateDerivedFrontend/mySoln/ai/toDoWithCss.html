@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="toDoWithCss.css">
+    
+</head>
+<!--
+TODO APP EXPLANATION:
+===================
+
+This is a simple todo application that demonstrates the render pattern where all DOM manipulation 
+is centralized in a single render() function.
+
+STRUCTURE:
+- todos[]: Array that stores all todo objects with title property
+- addTodo(): Minimal function that adds new todo to array and triggers re-render
+- deleteTodo(): Empty function (all deletion logic handled in render)
+- render(): Main function that handles ALL DOM operations
+
+HOW IT WORKS:
+1. User types in input field and clicks "Add todo!" button
+2. addTodo() reads input value, pushes to todos array, calls render()
+3. render() clears the todo container and input field
+4. render() loops through todos array and creates DOM elements for each todo
+5. render() attaches delete functionality to each todo's delete button
+6. When delete is clicked, it removes todo from array using splice() and re-renders
+
+KEY CONCEPT:
+Instead of managing DOM state separately, we store data in JavaScript (todos array) 
+and completely rebuild the UI from that data every time something changes. 
+This makes the code predictable - the UI always reflects the current state of the data.
+
+RENDER PATTERN BENEFITS:
+- Single source of truth (todos array)
+- Predictable UI updates
+- Easy to debug (all DOM logic in one place)
+- No complex state synchronization needed
+-->
+
+<body>
+    <div class="app-container">
+        <h1>My Todo List</h1>
+        <div class="input-container">
+            <input type="text" placeholder="Enter a new todo...">
+            <button onclick="addTodo()">Add Todo</button>
+        </div>
+        
+        <!-- Separate container for todos -->
+        <div id="todoContainer"></div>
+    </div>
+    
+    <script>
+        let todos = [];
+        
+        function addTodo() {
+            todos.push({
+                title: document.querySelector("input").value
+            })
+            render();
+        }
+
+        function deleteTodo() {
+            
+            render();
+        }
+     
+        function render() {
+            // Clear only the todo container, not the entire body
+            document.querySelector('#todoContainer').innerHTML = '';
+            
+            // Clear input field as part of DOM management
+            document.querySelector("input").value = '';
+            
+            // Show empty state if no todos
+            if (todos.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-state';
+                emptyDiv.innerHTML = 'No todos yet. Add one above!';
+                document.querySelector('#todoContainer').append(emptyDiv);
+                return;
+            }
+            
+            for (let i = 0; i < todos.length; i++) {
+                const todoName = todos[i].title;
+                
+                const divEl = document.createElement('div');
+                const spanEl = document.createElement('span');
+                const buttonEl = document.createElement('button');
+                
+                divEl.className = 'todo-item';
+                spanEl.className = 'todo-text';
+                buttonEl.className = 'delete-btn';
+                
+                spanEl.innerHTML = todoName;
+                buttonEl.innerHTML = 'Delete';
+                
+                // Handle deletion logic directly in render
+                buttonEl.onclick = () => {
+                    todos.splice(i, 1); // Remove todo at index i
+                    render(); // Re-render after deletion
+                };
+                
+                divEl.append(spanEl);
+                divEl.append(buttonEl);
+                document.querySelector('#todoContainer').append(divEl);
+            }
+        }
+
+    </script>
+</body>
+</html>

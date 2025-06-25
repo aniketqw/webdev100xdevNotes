@@ -1,0 +1,34 @@
+<!-- <body>
+    <input type="text"></input>
+    <button onclick="addTodo()">Add todo!</button>
+    <script>
+        function addTodo(){
+            const value=document.querySelector('input').value;
+            const newTodoDivEL=document.createElement('div');
+            newTodoDivEL.innerHTML=value;
+            document.querySelector('body').appendChild(newTodoDivEL);
+        }
+    </script>
+</body> -->
+<!DOCTYPE html>
+
+
+<body>
+    <input type="text"></input>
+    <button onclick="addTodo()">Add todo!</button>
+    <script>
+        function addTodo(){
+            const value=document.querySelector('input').value;
+            const spanEl=document.createElement('span');
+            const buttonEl=document.createElement('button');
+            spanEl.innerHTML=value;
+            buttonEl.innerHTML="Delete";
+            // not dealing with the raw HTML
+            const divEl=document.createElement('div');
+            divEl.appendChild(spanEl);
+            divEl.appendChild(buttonEl);
+            //
+            document.querySelector('body').appendChild(divEl);
+        }
+    </script>
+</body>

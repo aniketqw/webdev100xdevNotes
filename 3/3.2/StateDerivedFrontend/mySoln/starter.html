@@ -1,0 +1,52 @@
+<body>
+  <input type="text"></input>
+  <button onclick="addTodo()">Add todo!</button>
+  <script>
+    let todos = [];
+    function addTodo() {
+      todos.push({
+        title: document.querySelector("input").value
+      })
+      render();
+    }
+
+    function deleteTodo() {
+      
+      render();
+    }
+ 
+    function render() {
+        // document.querySelector('body').removeChild(document.querySelector('div'));
+        // console.log(todos);
+        // for (let i = 0; i < todos.length; i++) {
+            const todoName = todos.at(-1).title;
+            // console.log(todoName);
+            const divEl=document.createElement('div');
+            const spanEl=document.createElement('span');
+            const buttonEl=document.createElement('button');
+            spanEl.innerHTML=todoName;
+            buttonEl.innerHTML='Delete';
+            divEl.append(spanEl);
+            divEl.append(buttonEl);
+            document.querySelector('body').append(divEl);
+        // }
+
+        ////will not work as we clear the body content we will also lose the add button and input field as a solution we can create a diff component and add everything to it and then clear it each time 
+        // document.querySelector('').innerHTML = ''; // Clear the body content
+        // // console.log(todos);
+        // for (let i = 0; i < todos.length; i++) {
+        //     const todoName = todos[i].title;
+        //     // console.log(todoName);
+        //     const divEl=document.createElement('div');
+        //     const spanEl=document.createElement('span');
+        //     const buttonEl=document.createElement('button');
+        //     spanEl.innerHTML=todoName;
+        //     buttonEl.innerHTML='Delete';
+        //     divEl.append(spanEl);
+        //     divEl.append(buttonEl);
+        //     document.querySelector('body').append(divEl);
+        // }
+      
+    }
+  </script>
+</body>
