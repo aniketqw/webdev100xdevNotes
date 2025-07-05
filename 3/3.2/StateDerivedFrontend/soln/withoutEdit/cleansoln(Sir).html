@@ -1,0 +1,58 @@
+<body>
+  <input type="text"></input>
+  <button onclick="addTodo()">Add todo!</button>
+  <button onclick="deleteLastTodo()">Delete last Todo!</button>
+  <button onclick="deleteFirstTodo()">Delete first Todo!</button>
+  <div id="todos"> </div>
+  <script>
+    let todos = [];
+    function addTodo() {
+      todos.push({
+        title: document.querySelector("input").value
+      })
+      render();
+    }
+    function deleteFirstTodo() {
+      todos.splice(0,1)// remove the first element form the arr
+      render();
+    }
+
+
+    function deleteLastTodo() {
+      todos.splice(todos.length-1,1)// remove the last element form the arr
+      render();
+    }
+    function deleteTodo(i){//remove the todo using delete button which will delete at that particular index
+        todos.splice(i,1);
+        render();
+    }
+    function createToDoComponent(todo,i) //in react also we will create component
+    {
+       const div=document.createElement("div");
+        const spanEl=document.createElement("span");
+        const buttonEl=document.createElement('button');
+        spanEl.innerHTML=todo.title;
+        buttonEl.innerHTML="delete";
+        buttonEl.setAttribute("onclick","deleteTodo("+i+")");//we want to set the value of onclick attribute of button in runtime hence used setAttribute function
+        div.appendChild(spanEl);
+        div.appendChild(buttonEl);
+        // buttonEl.onclick = function() { deleteTodo(i); };//instead of above set attribute code 
+
+        return div;
+    }
+ 
+    function render() { // here we have added our own in general this will be changed by the frontend framework like react which will do the DOM manipulation for us
+      document.querySelector("#todos").innerHTML="";
+      for(let i=0;i<todos.length;i++)
+      {
+        
+        const div=createToDoComponent(todos[i],i);
+        
+        document.querySelector('#todos').appendChild(div);
+        
+      }
+
+      
+    }
+  </script>
+</body>

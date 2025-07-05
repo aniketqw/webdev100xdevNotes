@@ -1,0 +1,182 @@
+<body>
+  <!-- Input for new todos and control buttons -->
+  <input type="text" placeholder="Enter new todo…" id="new-todo-input">
+  <button onclick="addTodo()">Add todo!</button>
+  <button onclick="deleteLastTodo()">Delete last Todo!</button>
+  <button onclick="deleteFirstTodo()">Delete first Todo!</button>
+
+  <!-- Container where all todos will be rendered -->
+  <div id="todos"></div>
+
+  <script>
+    // The in-memory list of all todo objects
+    // Each todo has:
+    // - todoId:      unique numeric ID
+    // - title:       string text of the todo
+    // - isEditing:   whether it is currently in edit mode
+    // - TodoTextId:  DOM id for the <input> when in edit mode
+    let todos = [];
+
+    /**
+     * Adds a new todo to the list.
+     * 1. Generate a unique ID using the current timestamp.
+     * 2. Read the text from the new-todo-input field.
+     * 3. Push a new object into the todos array with isEditing=false.
+     * 4. Re-render the list to show the new item.
+     */
+    function addTodo() {
+      const id = Date.now();  // unique identifier based on time
+      const inputEl = document.getElementById("new-todo-input");
+      const text = inputEl.value.trim();
+      if (!text) return;      // ignore empty entries
+
+      todos.push({
+        todoId: id,
+        title: text,
+        isEditing: false,
+        TodoTextId: `todo-text-${id}`
+      });
+
+      inputEl.value = "";     // clear the input for next entry
+      render();               // update the UI
+    }
+
+    /**
+     * Deletes the first todo in the list.
+     * Uses splice(0,1) to remove the element at index 0.
+     * Then re-renders.
+     */
+    function deleteFirstTodo() {
+      if (todos.length > 0) {
+        todos.splice(0, 1);
+        render();
+      }
+    }
+
+    /**
+     * Deletes the last todo in the list.
+     * Uses splice(length-1,1) to remove the final element.
+     * Then re-renders.
+     */
+    function deleteLastTodo() {
+      if (todos.length > 0) {
+        todos.splice(todos.length - 1, 1);
+        render();
+      }
+    }
+
+    /**
+     * Deletes the todo at a given index.
+     * Called by the "Delete" button next to each item.
+     * @param {number} index - position in the todos array
+     */
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      render();
+    }
+
+    /**
+     * Toggles edit mode for a single todo identified by its todoId.
+     * 1. Map over todos to build a new array.
+     * 2. When we find the matching todo:
+     *    a. If it was in editing mode (isEditing === true),
+     *       read the new text out of its <input> and store to title.
+     *    b. Flip the isEditing flag (false→true to enter edit mode, or true→false to save & exit).
+     * 3. Return every todo object (modified or not) to form the new todos array.
+     * 4. Call render() to update the DOM according to the new state.
+     *
+     * @param {number} id - the unique todoId of the item to toggle
+     */
+    function toggleEditItem(id) {
+      todos = todos.map(todo => {
+        if (todo.todoId === id) {
+          // If currently in edit mode, save the edited text back to todo.title
+          if (todo.isEditing) {
+            const editInput = document.getElementById(todo.TodoTextId);
+            todo.title = editInput.value;
+          }
+          // Flip the mode: enter edit if we were viewing, or save/exit if we were editing
+          todo.isEditing = !todo.isEditing;
+        }
+        return todo;
+      });
+      render();
+    }
+
+    /**
+     * Creates and returns a single DOM node (<div>) representing one todo.
+     * - If todo.isEditing is true:
+     *     * Create an <input> with id=TodoTextId, value=title.
+     *     * Optionally style or add attributes (e.g., autofocus).
+     * - Else:
+     *     * Create a <span> showing the title.
+     * - Always append:
+     *     * An Edit/Save toggle button wired to toggleEditItem(todoId).
+     *     * A Delete button wired to deleteTodo(index).
+     *
+     * @param {object} todo   - the todo data object
+     * @param {number} index  - its index in the todos array
+     * @returns {HTMLElement} container div with all child elements
+     */
+    function createToDoComponent(todo, index) {
+      const container = document.createElement("div");
+      container.classList.add("todo-item");  // for CSS styling if desired
+
+      if (todo.isEditing) {
+        // --- Edit mode: show input field ---
+        const inputEl = document.createElement("input");
+        inputEl.id = todo.TodoTextId;
+        inputEl.value = todo.title;
+        inputEl.classList.add("edit-input"); // CSS hook
+        container.appendChild(inputEl);
+      } else {
+        // --- View mode: show static text ---
+        const spanEl = document.createElement("span");
+        spanEl.textContent = todo.title;
+        spanEl.classList.add("todo-text");   // CSS hook
+        container.appendChild(spanEl);
+      }
+
+      // --- Edit/Save toggle button ---
+      const editBtn = document.createElement("button");
+      editBtn.textContent = todo.isEditing ? "Save" : "Edit";
+      editBtn.onclick = () => toggleEditItem(todo.todoId);
+      editBtn.classList.add("edit-btn");     // CSS hook
+      container.appendChild(editBtn);
+
+      // --- Delete button ---
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "Delete";
+      delBtn.onclick = () => deleteTodo(index);
+      delBtn.classList.add("delete-btn");    // CSS hook
+      container.appendChild(delBtn);
+
+      return container;
+    }
+
+    /**
+     * Renders the entire todos list into the #todos container.
+     * 1. Grab the container element.
+     * 2. Clear its current HTML.
+     * 3. Loop through todos[] and append each createToDoComponent() output.
+     * This fully rebuilds the visible list to match the data.
+     */
+    function render() {
+      const list = document.getElementById("todos");
+      list.innerHTML = "";  // clear previous contents
+
+      todos.forEach((todo, idx) => {
+        const todoNode = createToDoComponent(todo, idx);
+        list.appendChild(todoNode);
+      });
+    }
+
+    // Initial render (empty list)
+    render();
+  </script>
+</body>
+
+
+<!-- BASICALLY WHEN ON THE BASIS OF ISEDITING BUTTION WE HAVE TWO DIFFERENT COMPONENT WHEN WE HAVE EDIT BUTTON WE INPUT FIELD OTHERWISE SPAN BY DEFAULT IT IS FALSE MODE
+ IF IT IS EDITING WE CAN GET THE NEW INPUT  (WE GRAB THE ELEMENT BY ID WHEN WE ITERATE ON THE NEW ARRAY CREATED BY MAP )
+ WE HAVE CONDITIONAL DOM WHEN IT IS EDITING IT IS INPUT OTHERWISE IT IS SPAN (THIS IS GREAT!!!) -->

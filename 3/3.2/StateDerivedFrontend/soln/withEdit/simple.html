@@ -1,0 +1,107 @@
+<body>
+  <input type="text" placeholder="Enter new todo…">
+  <button onclick="addTodo()">Add todo!</button>
+  <button onclick="deleteLastTodo()">Delete last Todo!</button>
+  <button onclick="deleteFirstTodo()">Delete first Todo!</button>
+  <div id="todos"></div>
+
+  <script>
+    let todos = [];  // Array of { todoId, title, isEditing, TodoTextId }
+
+    function addTodo() {
+      const id = Date.now();               // ① generate a unique ID
+      todos.push({
+        todoId: id,                        // unique identifier
+        title: document.querySelector("input").value, // initial text
+        isEditing: false,                  // start in “view” mode
+        TodoTextId: `todo-text-${id}`     // ID for the <input> when editing
+      });
+      render();                            // update the UI
+    }
+
+    // Remove first item
+    function deleteFirstTodo() {
+      todos.splice(0, 1);
+      render();
+    }
+
+    // Remove last item
+    function deleteLastTodo() {
+      todos.splice(todos.length - 1, 1);
+      render();
+    }
+
+    // Remove the i-th item
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      render();
+    }
+
+    /**
+     *  Toggle between “view” and “edit” for the todo with the given ID.
+     *  – If currently editing, grab the updated text from the <input> first.
+     */
+    function toggleEditItem(id) {
+      todos = todos.map(todo => {
+        if (todo.todoId === id) {            // 1️⃣ find the matching todo
+          if (todo.isEditing) {              // 2️⃣ if we’re in edit mode (button said “Save”)
+            // 2a. Read the new value from the DOM input
+            todo.title = document
+              .getElementById(todo.TodoTextId)
+              .value;
+          }
+          // 3️⃣ flip the editing flag: view→edit or edit→view
+          todo.isEditing = !todo.isEditing;
+        }
+        return todo;                         // return each item (modified or not)
+      });
+      render();                              // 4️⃣ re-render with updated state
+    }
+
+    /**
+     *  Build the DOM node for one todo.
+     *  Renders either a <span> or an <input> based on isEditing,
+     *  plus the Edit/Save button and the Delete button.
+     */
+    function createToDoComponent(todo, index) {
+      const container = document.createElement("div");
+
+      if (todo.isEditing) {
+        // ––– edit mode: show an <input> pre-filled with current title
+        const inputEl = document.createElement("input");
+        inputEl.id = todo.TodoTextId;
+        inputEl.value = todo.title;
+        container.appendChild(inputEl);
+      } else {
+        // ––– view mode: show a <span> with the title
+        const spanEl = document.createElement("span");
+        spanEl.textContent = todo.title;
+        container.appendChild(spanEl);
+      }
+
+      // ––– Edit/Save toggle button
+      const editBtn = document.createElement("button");
+      editBtn.textContent = todo.isEditing ? "Save" : "Edit";
+      // clicking flips between modes (and saves on the way out)
+      editBtn.onclick = () => toggleEditItem(todo.todoId);
+      container.appendChild(editBtn);
+
+      // ––– Delete button for this item
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "Delete";
+      delBtn.onclick = () => deleteTodo(index);
+      container.appendChild(delBtn);
+
+      return container;
+    }
+
+    // Rebuild the #todos list from scratch on every state change
+    function render() {
+      const list = document.getElementById("todos");
+      list.innerHTML = "";                     // clear old content
+      todos.forEach((todo, idx) => {
+        list.appendChild(createToDoComponent(todo, idx));
+      });
+    }
+  </script>
+</body>
