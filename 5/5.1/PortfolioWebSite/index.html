@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniket Saxena - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-blue-500 z-20" style="width: 0%;"></div>
+    <header class="fixed w-full bg-white shadow-md dark:bg-gray-800 z-10">
+        <nav class="flex justify-between items-center px-4 py-3 md:px-8">
+            <div class="logo text-xl font-bold">Aniket Saxena</div>
+            <ul class="flex flex-col md:flex-row gap-4 md:gap-6">
+                <li><a href="#about" class="hover:text-blue-500 hover:underline transition">About</a></li>
+                <li><a href="#education" class="hover:text-blue-500 hover:underline transition">Education</a></li>
+                <li><a href="#projects" class="hover:text-blue-500 hover:underline transition">Projects</a></li>
+                <li><a href="#experience" class="hover:text-blue-500 hover:underline transition">Experience</a></li>
+                <li><a href="#skills" class="hover:text-blue-500 hover:underline transition">Skills</a></li>
+                <li><a href="#certifications" class="hover:text-blue-500 hover:underline transition">Certifications</a></li>
+                <li><a href="#contact" class="hover:text-blue-500 hover:underline transition">Contact</a></li>
+            </ul>
+            <div class="theme-toggle flex items-center gap-2">
+                <input type="checkbox" id="theme-switch" class="hidden">
+                <label for="theme-switch" class="cursor-pointer text-sm">Dark Mode</label>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20 md:pt-24">
+        <section id="hero" class="text-center bg-gradient-to-r from-blue-500 to-blue-300 text-white py-16 md:py-24">
+            <h1 class="text-4xl md:text-5xl font-bold">Aniket Saxena</h1>
+            <p class="text-lg md:text-xl mt-2">AI Engineer | Full-Stack Developer | B.Tech in Computer Science</p>
+            <a href="#projects" class="cta inline-block mt-4 bg-white text-blue-500 px-6 py-2 rounded-md hover:bg-gray-100 hover:scale-105 transition">View My Work</a>
+        </section>
+
+        <section id="about" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">About Me</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                <p class="mb-4">Passionate AI and ML enthusiast with experience in NLP, deep learning, and full-stack development. Currently pursuing B.Tech in Computer Science at Vellore Institute of Technology.</p>
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Professional profile photo of Aniket Saxena" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+            </div>
+        </section>
+
+        <section id="education" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Education</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                <h3 class="text-2xl font-semibold">Vellore Institute of Technology</h3>
+                <p>B.Tech in Computer Science and Engineering - CGPA: 8.64</p>
+                <p>2021 - 2025 | Amravati, India</p>
+            </div>
+        </section>
+
+        <section id="projects" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1570545887595-1a7a428582b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wellness AI Guru project screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Wellness AI Guru</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">A personalized wellness recommendation platform using AI.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">NLP</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Generative AI</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Git</span>
+                        </div>
+                        <ul class="list-disc pl-5 mb-4 text-sm">
+                            <li>Enhanced user engagement</li>
+                            <li>Scalable deployment</li>
+                        </ul>
+                        <div class="flex gap-4">
+                            <a href="#" class="bg-blue-100 text-blue-500 px-4 py-2 rounded hover:bg-blue-200 transition">View Live →</a>
+                            <button onclick="openModal('modal-wellness')" class="bg-blue-500 text-white px-4 py-2 rounded hover:scale-105 transition">Case Study →</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1591305913860-1f6b8354fabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Emotion Key Facial Point Detection project screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Emotion Key Facial Point Detection</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">Deep learning model for facial feature detection.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">CNN</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">ResNet</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Git</span>
+                        </div>
+                        <ul class="list-disc pl-5 mb-4 text-sm">
+                            <li>Improved accuracy with data augmentation</li>
+                        </ul>
+                        <div class="flex gap-4">
+                            <a href="#" class="bg-blue-100 text-blue-500 px-4 py-2 rounded hover:bg-blue-200 transition">View Live →</a>
+                            <button onclick="openModal('modal-emotion')" class="bg-blue-500 text-white px-4 py-2 rounded hover:scale-105 transition">Case Study →</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Realtime MCQ Battle project screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Realtime MCQ Battle</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">Real-time multiplayer quiz game.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">MongoDB</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">JavaScript</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Node.js</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">Express.js</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm">WebSocket</span>
+                        </div>
+                        <ul class="list-disc pl-5 mb-4 text-sm">
+                            <li>Low-latency communication</li>
+                            <li>Synchronized game states</li>
+                        </ul>
+                        <div class="flex gap-4">
+                            <a href="#" class="bg-blue-100 text-blue-500 px-4 py-2 rounded hover:bg-blue-200 transition">View Live →</a>
+                            <button onclick="openModal('modal-mcq')" class="bg-blue-500 text-white px-4 py-2 rounded hover:scale-105 transition">Case Study →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals remain the same, but renamed buttons to "Case Study" for match -->
+        <div id="modal-wellness" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-30">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg max-w-lg w-full">
+                <h3 class="text-2xl font-bold">Wellness AI Guru Details</h3>
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Developed NLP algorithms to personalize wellness recommendations based on user input and behavior analysis.</li>
+                    <li>Implemented TensorFlow-based ML models to predict and enhance user engagement and wellness outcomes.</li>
+                    <li>Integrated real-time data processing pipelines for scalable and efficient model deployment.</li>
+                    <li>Collaborated with UX/UI teams to refine the user interface, enhancing overall user experience.</li>
+                </ul>
+                <button onclick="closeModal('modal-wellness')" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Close</button>
+            </div>
+        </div>
+        <!-- Similar for other modals -->
+
+        <section id="experience" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Experience</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <h3 class="text-2xl font-semibold mb-2">DailyWellness AI - Lead AI Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Nov 2024 - Feb 2025 | Remote</p>
+                    <ul class="list-disc pl-5 text-sm">
+                        <li>Designed, developed, and deployed AI models, including ML, DL, and NLP systems.</li>
+                        <li>Set technical roadmap, conducted code reviews, and maintained quality standards.</li>
+                        <li>Integrated the latest AI trends and researched innovative solutions for business challenges.</li>
+                        <li>Communicated with stakeholders; optimized models for scalability and efficiency.</li>
+                        <li>Managed deployment, scaling, and troubleshooting of AI models in production.</li>
+                    </ul>
+                </div>
+                <!-- Similar card for other experiences -->
+            </div>
+        </section>
+
+        <section id="skills" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <h4 class="text-xl font-semibold mb-2">Languages</h4>
+                    <p>Python, Java, C, C++, JavaScript</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <h4 class="text-xl font-semibold mb-2">Developer Tools</h4>
+                    <p>VS Code, Jupyter Notebook</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <h4 class="text-xl font-semibold mb-2">Technologies/Frameworks</h4>
+                    <p>Linux, GitHub, ReactJS, Django, HTML, CSS, Git, ExpressJS, MongoDB, REST APIs</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Certifications</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                <ul class="list-disc pl-5">
+                    <li>Containers & Kubernetes Essentials IBM</li>
+                    <li>Enterprise Design Thinking Practitioner IBM</li>
+                    <li>Joy of Computing using Python, NPTEL</li>
+                    <li>Introduction to Containers, Kubernetes, and OpenShift V2 by IBM</li>
+                    <li>Programming in C, NPTEL</li>
+                    <li>AWS Academy Graduate - AWS Academy Cloud Foundations</li>
+                    <li>AWS Academy Graduate - AWS Academy Cloud Architecting</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="px-4 py-12 md:px-8 max-w-6xl mx-auto opacity-0 translate-y-5 scale-95 transition-all duration-500">
+            <h2 class="text-3xl font-bold mb-4">Contact</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                <p>Email: aniketsaxena627@gmail.com</p>
+                <p>Phone: +919305053437</p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/aniketqw" class="text-blue-500 hover:underline">aniketqw</a></p>
+                <p>GitHub: <a href="https://github.com/anisa21" class="text-blue-500 hover:underline">anisa21</a></p>
+                <p>Other: Fightmonger</p>
+                <button id="contact-btn" class="mt-4 bg-blue-500 text-white px-6 py-2 rounded-md hover:scale-105 hover:bg-blue-600 transition">Send Message</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4 bg-gray-100 dark:bg-gray-800">
+        <p>© 2025 Aniket Saxena. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
