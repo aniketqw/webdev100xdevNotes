@@ -33,12 +33,10 @@ res.send(todoName+" has been deleted");
 
 
 });
-
 // update a todo 
 app.put('/',(req,res)=>{
 
 });
-
 // show all todo 
 app.get('/',(req,res)=>{
     let s=`use id to delete todo\n`;
@@ -47,5 +45,4 @@ app.get('/',(req,res)=>{
     res.send(s);
 
 })
-
 app.listen(3000);
